@@ -1,5 +1,6 @@
 use crate::mlx::*;
 
+#[derive(Clone, Copy, Debug)]
 pub enum MlxError {
     MlxCreationError,
     WindowCreationError,
