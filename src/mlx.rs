@@ -10,7 +10,7 @@ pub fn mlx_init() -> VoidPtr {
     unsafe { cmlx::mlx_init() }
 }
 
-pub fn mlx_new_window(mlx_ptr: VoidPtr, size_x: i32, size_y: i32, mut title: String) -> VoidPtr {
+pub fn mlx_new_window(mlx_ptr: VoidPtr, size_x: i32, size_y: i32, title: &mut str) -> VoidPtr {
     unsafe { cmlx::mlx_new_window(mlx_ptr, size_x, size_y, title.as_mut_ptr() as *mut i8) }
 }
 
