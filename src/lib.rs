@@ -1,3 +1,5 @@
 mod cmlx;
-pub mod mlx;
 pub mod utils;
+mod wrapper;
+
+pub use crate::wrapper::*;

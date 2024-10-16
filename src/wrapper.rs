@@ -1,7 +1,6 @@
 extern crate x11;
-
-pub use x11::xlib::xEvent;
 use crate::cmlx;
+pub use x11::xlib::xEvent;
 
 pub type VoidPtr = *mut ::std::os::raw::c_void;
 type CFunPtr = unsafe extern "C" fn() -> i32;
