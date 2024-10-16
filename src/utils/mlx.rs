@@ -1,8 +1,8 @@
 use super::{MlxError, MlxImage, MlxWindow};
 use crate::{mlx_init, mlx_destroy_display, mlx_put_image_to_window, VoidPtr};
 
-pub type MlxWindowHandle<'a> = &'a Option<MlxWindow>;
-pub type MlxImageHandle<'a> = &'a Option<MlxImage>;
+pub type MlxWindowHandle<'a> = &'a mut Option<MlxWindow>;
+pub type MlxImageHandle<'a> = &'a mut Option<MlxImage>;
 
 pub struct Mlx {
     mlx_ptr: VoidPtr,
@@ -30,7 +30,7 @@ impl Mlx {
     ) -> Result<MlxWindowHandle, MlxError> {
         self.win_vec
             .push(Some(MlxWindow::new(self.mlx_ptr, width, height, title)?));
-        return Ok(self.win_vec.last().unwrap());
+        return Ok(self.win_vec.last_mut().unwrap());
     }
     pub fn destroy_window(&mut self, window_handle: MlxWindowHandle) {
         if window_handle.is_none() {
@@ -46,7 +46,7 @@ impl Mlx {
     pub fn new_image(&mut self, width: i32, height: i32) -> Result<MlxImageHandle, MlxError> {
         self.image_vec
             .push(Some(MlxImage::new(self.mlx_ptr, width, height)?));
-        return Ok(self.image_vec.last().unwrap());
+        return Ok(self.image_vec.last_mut().unwrap());
     }
     pub fn destroy_image(&mut self, image_handle: MlxImageHandle) {
         if image_handle.is_none() {
