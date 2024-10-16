@@ -47,7 +47,8 @@ impl Mlx {
         if win_ptr.is_null() {
             return Err(MlxError::WindowCreationError);
         }
-        self.win_vec.push(Some(MlxWindow { win_ptr }));
+        self.win_vec
+            .push(Some(MlxWindow::new(width, height, win_ptr)));
         return Ok(self.win_vec.last().unwrap());
     }
     pub fn destroy_window(&mut self, window_handle: MlxWindowHandle) {
@@ -78,6 +79,9 @@ impl Mlx {
             }
         }
     }
+    pub fn put_image_to_window(&mut self, window: &MlxWindow, image: &MlxImage, x: i32, y: i32) {
+        mlx_put_image_to_window(self.mlx_ptr, window.win_ptr, image.img_ptr, x, y);
+    }
 }
 impl Drop for Mlx {
     fn drop(&mut self) {
@@ -97,7 +101,18 @@ impl Drop for Mlx {
 
 #[derive(Eq, PartialEq)]
 pub struct MlxWindow {
+    pub width: i32,
+    pub height: i32,
     win_ptr: VoidPtr,
+}
+impl MlxWindow {
+    pub fn new(width: i32, height: i32, win_ptr: VoidPtr) -> Self {
+        Self {
+            width,
+            height,
+            win_ptr,
+        }
+    }
 }
 
 #[derive(Eq, PartialEq)]
@@ -140,6 +155,13 @@ impl MlxImage {
         if offset < self.pixel_count {
             unsafe {
                 *self.data_addr.add(offset) = color;
+            }
+        }
+    }
+    pub fn put_rect(&mut self, top_left: (i32, i32), bot_right: (i32, i32), color: u32) {
+        for x in top_left.0..bot_right.0 {
+            for y in top_left.1..bot_right.1 {
+                self.put_pixel(x, y, color);
             }
         }
     }
