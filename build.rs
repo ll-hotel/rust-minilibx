@@ -3,11 +3,12 @@ use std::path::PathBuf;
 
 fn main() {
     // Tell cargo to look for shared libraries in the specified directory
-    println!("cargo:rustc-link-search=/home/ll-hotel/p/rust/minilibx/minilibx/");
+    println!("cargo:rustc-link-search=./minilibx/");
 
-    // Tell cargo to tell rustc to link the system bzip2
-    // shared library.
+    // Tell cargo to tell rustc to link the library
     println!("cargo:rustc-link-lib=mlx_Linux");
+    println!("cargo:rustc-link-lib=Xext");
+    println!("cargo:rustc-link-lib=X11");
 
     // The bindgen::Builder is the main entry point
     // to bindgen, and lets you build up options for

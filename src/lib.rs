@@ -1,1 +1,3 @@
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+mod cmlx;
+pub mod mlx;
+pub mod utils;
