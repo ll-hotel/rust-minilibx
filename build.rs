@@ -2,8 +2,9 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
+    let mlx_dir = "./42-minilibx-linux";
     // Tell cargo to look for shared libraries in the specified directory
-    println!("cargo:rustc-link-search=./minilibx/");
+    println!("cargo:rustc-link-search={mlx_dir}");
 
     // Tell cargo to tell rustc to link the library
     println!("cargo:rustc-link-lib=mlx_Linux");
@@ -16,7 +17,7 @@ fn main() {
     let bindings = bindgen::Builder::default()
         // The input header we would like to generate
         // bindings for.
-        .header("minilibx/mlx.h")
+        .header(format!("{mlx_dir}/mlx.h"))
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
