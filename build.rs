@@ -2,7 +2,7 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
-    let mlx_dir = "./42-minilibx-linux";
+    let mlx_dir = "./minilibx-linux-srcs";
     // Tell cargo to look for shared libraries in the specified directory
     println!("cargo:rustc-link-search={mlx_dir}");
 

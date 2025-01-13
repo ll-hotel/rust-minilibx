@@ -1,5 +1,5 @@
-mod cmlx;
-pub mod utils;
-mod wrapper;
+include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-pub use crate::wrapper::*;
+extern "C" {
+    pub fn free(ptr: *mut std::ffi::c_void);
+}
