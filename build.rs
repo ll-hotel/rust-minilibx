@@ -2,12 +2,12 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
-    let mlx_dir = "./minilibx-linux-srcs";
+    let mlx_src_dir = "src";
     // Tell cargo to look for shared libraries in the specified directory
-    println!("cargo:rustc-link-search={mlx_dir}");
+    println!("cargo:rustc-link-search={mlx_src_dir}");
 
     // Tell cargo to tell rustc to link the library
-    println!("cargo:rustc-link-lib=mlx_Linux");
+    println!("cargo:rustc-link-lib=mlx");
     println!("cargo:rustc-link-lib=Xext");
     println!("cargo:rustc-link-lib=X11");
 
@@ -17,7 +17,7 @@ fn main() {
     let bindings = bindgen::Builder::default()
         // The input header we would like to generate
         // bindings for.
-        .header(format!("{mlx_dir}/mlx.h"))
+        .header(format!("{mlx_src_dir}/mlx.h"))
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
