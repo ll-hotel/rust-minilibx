@@ -10,4 +10,6 @@ path = "lib.rs"
 bindgen = "0.70.1"
 
 [dependencies]
+gethostname = "0.5.0"
+shm = "0.1.0"
 x11 = "2.21.0"
