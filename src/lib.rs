@@ -7,8 +7,8 @@ use window::MlxWindow;
 mod events;
 use events::*;
 
-struct Mlx {
-    pub vars: Box<MlxVars>,
+pub struct Mlx {
+    vars: Box<MlxVars>,
 }
 impl Mlx {
     pub fn new() -> Option<Self> {
