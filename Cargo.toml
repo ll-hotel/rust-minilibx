@@ -7,3 +7,6 @@ edition = "2021"
 gethostname = "0.5.0"
 shm = "0.1.0"
 x11 = "2.21.0"
+
+[lib]
+link-args = ["-lX11"]
