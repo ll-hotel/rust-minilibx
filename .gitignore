@@ -5,7 +5,3 @@
 
 # Cargo target directory
 /target
-
-# Minilibx C source files
-/c_srcs
-/mlx
